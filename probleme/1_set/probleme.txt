@@ -1,0 +1,5 @@
+1. Set probleme cu un cuvant:
+1.1 Se transmite o litera de la client la server, serveru trimite inapoi litera dublata
+1.2 Intoarce lungimea cuvantului
+1.3 Intoarce numarul vocalelor
+1.4 Intoarce numarul consoanelor
