@@ -6,5 +6,3 @@
 3.5 Clientul trimite 2 numere, serverul intoarce cel mai mic numar
 3.6 Clientul trimite o lista de numere, serverul intoarce suma acestora
 3.7 Clientul trimite o lista de numere, serverul intoarce cel mai mare numar
-3.8 Clientul trimite 2 numere, serverul intoarce cel mai mic numar
-3.9 Clientul trimite 2 numere, serverul intoarce cel mai mare numar
