@@ -15,6 +15,4 @@ $server_port = 5555;
 socket_sendto($socket, $client_data, $length, $flags, $server_address, $server_port); // send data to server 
 
 socket_recvfrom($socket, $server_data, $length, $flags, $server_address, $server_port);  // recieve data from server
-echo "Recieved from: '$server_address:$server_port' the following data: \n $server_data"; // print out recieved data from server
-
-socket_close($socket);
+echo "Recieved from: '$server_address:$server_port' => \n $server_data"; // print out recieved data from server
