@@ -10,8 +10,6 @@ socket_recvfrom($socket, $client_data, 1, 0, $client_address, $client_port);
 
 echo "Recieved from $client_address:$client_port => $client_data";
 
-$client_data = json_decode($client_data, true);
-
 function sumOfDigits($number) {
     $sum = 0;
     while ($number > 0) {
