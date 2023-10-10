@@ -1,12 +1,20 @@
 <?php
 
-$socket = socket_create(AF_INET, SOCK_DGRAM, 0);
+$domain = AF_INET;
+$type = SOCK_DGRAM;
+$protocol = 0;
 
-$data = "Something";
-$data_max_length ;
-$special_flags = 0;
-$server_ip = "127.0.0.1";
+$socket = socket_create($domain, $type, $protocol);
+
+$client_data = "Client Data";
+$length = strlen($client_data) ;
+$flags = 0;
+$server_address = "127.0.0.1";
 $server_port = 5555;
 
-socket_sendto($socket, $data, $data_max_length, $special_flags, $server_ip, $server_port);
+socket_sendto($socket, $client_data, $length, $flags, $server_address, $server_port);
+socket_recvfrom($socket, $server_data, $length, $flags, $server_address, $server_port);
 
+echo "Recieved from: '$server_address:$server_port' the following data: \n $server_data";
+
+socket_close($socket);
