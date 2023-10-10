@@ -1,0 +1,6 @@
+2 Set probleme cu 2 sau mai multe cuvinte
+2.1 Intoarce cuvintele concatenate
+2.2 Intoarce numarul cuvintelor din lista?
+2.3 Intoarce cuvantul cu cele mai multe caractere
+2.4 Intoarce cuvantul cu cele mai multe vocale
+2.5 Intoarce cuvantul cu cele mai multe consoane

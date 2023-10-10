@@ -9,8 +9,10 @@ $flags = 0;
 
 socket_recvfrom($socket, $client_data, $length, $flags, $client_address, $client_port);
 
-echo "Recieved from: $client_address:$client_port => \n $client_data";
+echo "Recieved from: $client_address:$client_port => $client_data";
 
-$server_data = preg_match_all('/[bcdfghjklmnpqrstvwxyz]/i', $client_data, $matches);
+$client_data = json_decode($client_data, true);
+
+$server_data = $client_data['word1'].$client_data['word2'];
 
 socket_sendto($socket, $server_data, $length, $flags, $client_address, $client_port);
