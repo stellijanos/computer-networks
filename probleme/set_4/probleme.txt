@@ -2,6 +2,6 @@
 4.1 Clientul trimite serverului un sir de caractere (de exemplu numele utilizatorului citit de la tastatura). 
     Serverul afiseaza pe ecran sirul primit si portul clientului si ii raspunde acestuia cu suma cifrelor din Portul clientului. 
     Clientul va afisa pe ecran numarul primit.
-4.2 Intoarce suma cifrelor din Portul serverului adunate cu un numar primt de la client
+4.2 Intoarce suma cifrelor din Portul serverului adunate cu un numar primit de la client
 4.3 Intoarce suma cifrelor din IP-ul clientului
 4.4 Transforma o cifra in cuvinte [1234-Una mii doua sute trei zeci si patru] (max 4 cifre)
