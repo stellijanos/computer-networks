@@ -1,0 +1,10 @@
+3. Set probleme cu numere
+3.1 Clientul trimite 2 numere, serverul intoarce suma
+3.2 Clientul trimite 2 numere, serverul intoarce produsul
+3.3 Clientul trimite 2 numere, serverul intoarce diferenta
+3.4 Clientul trimite 2 numere, serverul intoarce cel mai mare numar
+3.5 Clientul trimite 2 numere, serverul intoarce cel mai mic numar
+3.6 Clientul trimite o lista de numere, serverul intoarce suma acestora
+3.7 Clientul trimite o lista de numere, serverul intoarce cel mai mare numar
+3.8 Clientul trimite 2 numere, serverul intoarce cel mai mic numar
+3.9 Clientul trimite 2 numere, serverul intoarce cel mai mare numar
