@@ -59,7 +59,7 @@ if ($number > 99 && $number < 1000) {
 }
 
 if ($number > 999 && $number < 10000) {
-    $server_data = intval($number / 1000) ? 'O mie ' : $numbersAsString[$number/ 1000].' mii ';
+    $server_data = intval($number / 1000 == 1) ? 'O mie ' : $numbersAsString[$number/ 1000].' mii ';
     $server_data .= $numbersAsString[$number / 100 % 10] . (intval($number / 100) == 1 ? ' suta ' : ' sute ' );
     $server_data .= ($numbersAsString[$number / 10 % 10] . 'zeci');
     if ($number % 10 != 0) {
@@ -67,6 +67,6 @@ if ($number > 999 && $number < 10000) {
     }
 }
 
-
+$server_data = ucfirst($server_data);
 
 socket_sendto($socket, $server_data, 1000, 0, $client_address, $client_port);
