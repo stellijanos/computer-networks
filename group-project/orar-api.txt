@@ -1,0 +1,104 @@
+<?php
+
+$start  = microtime(true);
+
+$token = 'jancsika_api';
+
+$filters = [
+    'token'     => $_GET['token'] ?? '',
+    'year'      => $_GET['year'] ?? '',
+    'semester'  => $_GET['semester'] ?? '',
+    'spec'      => $_GET['spec'] ?? '',
+    'acad_year' => $_GET['acad_year'] ?? '',
+    'group'     => $_GET['group'] ?? '',
+    'sub_group' => $_GET['sub_group'] ?? ''
+];
+
+header('Content-Type: application/json');
+
+if ( $filters['token'] !== $token || in_array('', array_values($filters)) ) {
+    echo '[]';
+    exit();
+}
+
+$url = 'https://www.cs.ubbcluj.ro/files/orar/'.$filters['year'].'-'.$filters['semester'].'/tabelar/'.$filters['spec'].$filters['acad_year'].'.html';
+
+// $url = 'https://www.cs.ubbcluj.ro/files/orar/2022-1/tabelar/IG1.html';
+
+
+$html_content = @file_get_contents($url);
+$html_content === false && die("Failed to fetch HTML content from the URL.");
+
+function getTableElement($html_content) {
+    $dom = new DOMDocument();
+    libxml_use_internal_errors(true); // Suppress HTML parsing errors
+    $dom->loadHTML($html_content);
+    libxml_use_internal_errors(false);
+    
+    // Use XPath to find all table elements
+    $xpath = new DOMXPath($dom);
+    return $xpath->query('//table');
+}
+
+function getHeaderRow($row) {
+    $headerRows = [];
+    foreach($row->getElementsByTagName('th') as $header) {
+        $headerRows[] = $header->textContent;
+    }
+    return $headerRows;
+}
+
+function getRowData($row, $headerRow) {
+    $rowData = array();
+    $index = 0;
+    foreach($row->getElementsByTagName('td') as $cell) {
+        $rowData[$headerRow[$index]] = $cell->textContent;
+        $index ++;
+    }
+    return $rowData;
+}
+
+function getTableData($table, $headerRow) {
+    $skipHeader = true;
+    $tableData = array();
+
+    foreach($table->getElementsByTagName('tr') as $row) {
+        if ($skipHeader) {
+            $skipHeader = false;
+            continue;
+        }
+        $tableData[] = getRowData($row, $headerRow);
+    }
+    return $tableData;
+}
+
+function getAllTables($tables, $headerRow) {
+    $allTables = [];
+    // $headerRow = getheaderRow($tables[0]->getElementsByTagName('tr')[0]);
+    foreach( $tables as $table) {
+        $allTables[] = getTableData($table, $headerRow);
+    }
+    return $allTables;
+}
+
+
+$tables = getTableElement($html_content);
+
+if ( $tables->length <=0 || $filters['group'] > $tables->length) {
+    echo "[]";
+    exit();
+}
+
+$headerRow = getheaderRow($tables[0]->getElementsByTagName('tr')[0]);
+$table = $tables->item($filters['group']-1);
+
+$result = getTableData($table, $headerRow);
+
+
+// $lastTable = $tables->item($tables->length - 1);
+$jsonArray = json_encode($result, JSON_PRETTY_PRINT);
+// Extract and print the content of the last table
+// echo $dom->saveHTML($lastTable);
+
+
+echo $jsonArray; 

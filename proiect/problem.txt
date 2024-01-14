@@ -1,0 +1,9 @@
+Realizeaza o mini aplicatie intre client si server pe 2 sisteme de operare si in 2 limbaje de programare diferiti.
+
+Server in php sistem de operare windows 
+Client in python sistem de operare Linnux (WSL)
+
+Optiuni: 
+sa creeze in baza de date
+Sa cauta in baza de date 
+sa stearga din baza de date 
